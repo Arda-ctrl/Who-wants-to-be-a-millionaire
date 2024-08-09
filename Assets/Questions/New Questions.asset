@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: New Questions
   m_EditorClassIdentifier: 
   question: "Thor\u2019s hammer Mjolnir is made of metal from the heart of a dying
-    what?\na) star* \nb)planet\nc)gizmos\n)asgard\n"
+    what?\n \n\n"
+  answers:
+  - A)Star
+  - B)Planet
+  - 'C)Gizmos  '
+  - D)Asgard
+  correctAnswer: 0
