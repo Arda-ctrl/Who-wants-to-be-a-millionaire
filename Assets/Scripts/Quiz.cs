@@ -13,23 +13,34 @@ public class Quiz : MonoBehaviour
     [SerializeField] TextMeshProUGUI questionsText;
     [SerializeField] List<QuestionsSO> questions = new List<QuestionsSO>();
     QuestionsSO currentQuestions;
-    [Header("------------Answers------------")]
+    [Header("-------------Answers-------------")]
 
     [SerializeField] GameObject[] answerButtons;
-    bool hasAnsweredEarly;
+    bool hasAnsweredEarly = true;
     int correctAnswerIndex;
-    [Header("------------Sprites------------")]
+    [Header("-------------Sprites-------------")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
-    [Header("------------Time------------")]
+    [Header("--------------Time--------------")]
     [SerializeField] Image timerImage;
-    float timerSpeed;
-
     Timer timer;
 
-    void Start()
+    [Header("-------------Scoring-------------")]
+    [SerializeField]  TextMeshProUGUI scoreText;
+    ScoreKeeper scoreKeeper;
+
+    [Header("--------------Slider--------------")]
+    [SerializeField] Slider progressBar;
+    public bool isComplate;
+    
+
+
+
+    void Awake()
     {
         timer = FindAnyObjectByType<Timer>();
+        scoreKeeper = FindAnyObjectByType<ScoreKeeper>();
+        progressBar.maxValue = questions.Count;
         
     }
     void Update() 
@@ -37,6 +48,11 @@ public class Quiz : MonoBehaviour
         timerImage.fillAmount = timer.fillFraciton;
         if(timer.isLoadNextQuestion)
         {
+            if(progressBar.value == progressBar.maxValue)
+        {
+            isComplate = true;
+            return;
+        }
             hasAnsweredEarly = false;
             GetNextQuestions();
             timer.isLoadNextQuestion = false;
@@ -53,6 +69,8 @@ public class Quiz : MonoBehaviour
         DisplayAnswer(index);
         SetButtonState(false);
         timer.CancelTimer();
+        scoreText.text = "Score : " + scoreKeeper.CalculuteScore() + "%";
+        
     }
     void DisplayAnswer(int index)
     {
@@ -61,6 +79,8 @@ public class Quiz : MonoBehaviour
             questionsText.text = "Well Done";
             buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
+            scoreKeeper.IncrementCorrectAnswer();
+
         }
         else 
         {
@@ -80,6 +100,8 @@ public class Quiz : MonoBehaviour
         GetRandomQuestions();
         SetDefaultButtonSprites();
         LoopQuestions();
+        progressBar.value++;
+        scoreKeeper.IncrementQuestionCount();
         }
     }
     void GetRandomQuestions()
