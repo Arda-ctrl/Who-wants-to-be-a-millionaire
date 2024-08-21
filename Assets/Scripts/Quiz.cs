@@ -6,22 +6,57 @@ using TMPro;
 using UnityEngine.UI;
 public class Quiz : MonoBehaviour
 {
+    
     Image buttonImage;
+    [Header("------------Questions------------")]
+
     [SerializeField] TextMeshProUGUI questionsText;
-    [SerializeField] QuestionsSO questions;
+    [SerializeField] List<QuestionsSO> questions = new List<QuestionsSO>();
+    QuestionsSO currentQuestions;
+    [Header("------------Answers------------")]
 
     [SerializeField] GameObject[] answerButtons;
+    bool hasAnsweredEarly;
     int correctAnswerIndex;
+    [Header("------------Sprites------------")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
+    [Header("------------Time------------")]
+    [SerializeField] Image timerImage;
+    float timerSpeed;
+
+    Timer timer;
 
     void Start()
     {
-        GetNextQuestions();
+        timer = FindAnyObjectByType<Timer>();
+        
+    }
+    void Update() 
+    {
+        timerImage.fillAmount = timer.fillFraciton;
+        if(timer.isLoadNextQuestion)
+        {
+            hasAnsweredEarly = false;
+            GetNextQuestions();
+            timer.isLoadNextQuestion = false;
+        }
+        else if(!hasAnsweredEarly && !timer.isAnsweringQuestion)
+        {
+            DisplayAnswer(-1);
+            SetButtonState(false);
+        }
     }
     public void OnAnswerSelected(int index)
     {
-        if(index == questions.GetCorrectAnswer())
+        hasAnsweredEarly = true;
+        DisplayAnswer(index);
+        SetButtonState(false);
+        timer.CancelTimer();
+    }
+    void DisplayAnswer(int index)
+    {
+        if(index == currentQuestions.GetCorrectAnswer())
         {
             questionsText.text = "Well Done";
             buttonImage = answerButtons[index].GetComponent<Image>();
@@ -29,28 +64,40 @@ public class Quiz : MonoBehaviour
         }
         else 
         {
-            correctAnswerIndex = questions.GetCorrectAnswer();
-            string correctAnswer = questions.GetAnswer(correctAnswerIndex);
+            correctAnswerIndex = currentQuestions.GetCorrectAnswer();
+            string correctAnswer = currentQuestions.GetAnswer(correctAnswerIndex);
             questionsText.text = "Sorry about that , the correct answer was : \n" + correctAnswer;
 
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
-        }    
-        SetButtonState(false);
+        }
     }
     void GetNextQuestions()
     {
+        if(questions.Count > 0)
+        {
         SetButtonState(true);
+        GetRandomQuestions();
         SetDefaultButtonSprites();
         LoopQuestions();
+        }
+    }
+    void GetRandomQuestions()
+    {
+        int index = Random.Range(0,questions.Count);
+        currentQuestions = questions[index];
+        //if(questions.Contains(currentQuestions))
+        //{
+            questions.Remove(currentQuestions);
+        //}
     }
     void LoopQuestions()
      {
-        questionsText.text = questions.GetQuestions();
+        questionsText.text = currentQuestions.GetQuestions();
         for(int i=0;i<4;i++)
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>(); 
-            buttonText.text = questions.GetAnswer(i);
+            buttonText.text = currentQuestions.GetAnswer(i);
         }
      }
      void SetButtonState(bool state)

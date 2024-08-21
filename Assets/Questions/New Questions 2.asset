@@ -15,11 +15,11 @@ MonoBehaviour:
   question: 'What is the name of the set of documents that regulate the activities
     of enhanced persons?
 
-    a)S.H.I.E.L.D. Accords
 
-    b)Stark Accords
-
-    c)Sokovia
-    Accords*
-
-    d)Wakanda Accords'
+'
+  answers:
+  - A)S.H.I.E.L.D. Accords
+  - B)Stark Accords
+  - C)Sokovia Accords
+  - D)Wakanda Accords
+  correctAnswer: 2

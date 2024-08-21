@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: New Questions 4
   m_EditorClassIdentifier: 
   question: "In the post-credits scene of Marvel Studios\u2019 The Avengers, what
-    type of restaurant are the Avengers shown eating at?\na)Pizza\nb)Hamburger\nc)Shawarma*\nd)Sushi"
+    type of restaurant are the Avengers shown eating at?\n"
+  answers:
+  - 'A)Pizza  '
+  - B)Hamburger
+  - C)Shawarma
+  - D)Sushi
+  correctAnswer: 2

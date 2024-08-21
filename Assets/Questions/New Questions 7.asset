@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: New Questions 7
   m_EditorClassIdentifier: 
   question: "In Marvel Studios\u2019 Thor: Ragnarok, Thor reunited with the Hulk
-    on this planet.\na)Asgard\nb)Sakaar*\nc)Xandar\nd)Berhert"
+    on this planet.\n\n\n\n"
+  answers:
+  - A)Asgard
+  - B)Sakaar
+  - C)Xandar
+  - D)Berhert
+  correctAnswer: 1

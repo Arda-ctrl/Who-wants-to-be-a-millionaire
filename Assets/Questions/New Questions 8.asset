@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab92ae600d010f4997d1f13bb0edd01, type: 3}
   m_Name: New Questions 8
   m_EditorClassIdentifier: 
-  question: 'Where did Thanos find the Soul Stone?
-
-    a)Vormir*
-
-    b)Knowhere
-
-    c)Earth
-
-    d)Nidavellir'
+  question: Where did Thanos find the Soul Stone?
+  answers:
+  - A)Vormir
+  - B)Knowhere
+  - C)Earth
+  - D)Nidavellir
+  correctAnswer: 0

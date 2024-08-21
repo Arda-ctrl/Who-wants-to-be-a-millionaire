@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 'Rocket has been called all of the following names except ______?
 
-    a)Whiskers*
 
-    b)Triangle-Faced
-    Monkey
 
-    c)Sweet Rabbit
 
-    d)Trash Mouse'
+'
+  answers:
+  - A)Whiskers
+  - B)Trash Mouse
+  - C)Sweet Rabbit
+  - D)Triangle-Faced Monkey
+  correctAnswer: 0

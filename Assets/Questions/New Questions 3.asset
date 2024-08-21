@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: New Questions 3
   m_EditorClassIdentifier: 
   question: "What are the names of the batteries that the Guardians have to protect
-    at the beginning of Marvel Studios\u2019 Guardians of the Galaxy Vol. 2?\na)Harbulary
-    Batteries\nb)Vibranium Batteries\nc)Galaxy Batteries\nd)Anulax Batteries*"
+    at the beginning of Marvel Studios\u2019 Guardians of the Galaxy Vol. 2?\n"
+  answers:
+  - 'A)Harbulary Batteries '
+  - 'B)Vibranium Batteries  '
+  - C)Galaxy Batteries
+  - D)Anulax Batteries
+  correctAnswer: 3

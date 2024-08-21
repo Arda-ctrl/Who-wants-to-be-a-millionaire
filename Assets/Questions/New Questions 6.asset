@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 'What is the Wi-Fi password Karl Modo hands to Doctor Strange?
 
-    a)Dormammu
 
-    b)Kamar-Taj
 
-    c)Shamballa*
-
-    d)Agamotto'
+'
+  answers:
+  - A)Dormammu
+  - B)Kamar-Taj
+  - C)Shamballa
+  - D)Agamotto
+  correctAnswer: 2

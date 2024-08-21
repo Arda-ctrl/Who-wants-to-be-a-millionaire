@@ -28,6 +28,7 @@ public class Timer : MonoBehaviour
         {
             if(timerValue <= 0)
             {
+                isAnsweringQuestion = false;
                 timerValue = timeToShowCorrectAnswer;
             }
             else
@@ -48,6 +49,6 @@ public class Timer : MonoBehaviour
             fillFraciton = timerValue/timeToShowCorrectAnswer;
         }
         }
-        Debug.Log(isAnsweringQuestion + " : "+timerValue+" = "+fillFraciton);
+        //Debug.Log(isAnsweringQuestion + " : "+timerValue+" = "+fillFraciton);
     }
 }
